@@ -1,4 +1,14 @@
-# MVisor: A mini x86 hypervisor
+# Unofficial MVisor builds
+
+> [!NOTE]
+> This project is in ALPHA. Releases are not publicly available at the moment.
+
+> [!WARNING]
+> These builds are provided as-is, with no warranty or any other guarantee of functioning.
+
+This fork of the [tenclass/mvisor](https://github.com/tenclass/mvisor) repository serves as the home for my automated MVisor builds.
+
+## ORIGINAL README:
 
 ## Goal
 
