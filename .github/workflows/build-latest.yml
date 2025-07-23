@@ -1,0 +1,34 @@
+name: Build the MVisor tool a) on every parent master branch commit or b) manually
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Prerequisite installation
+      # Install dependencies as listed in the README file
+      run: sudo apt update; sudo apt install -y meson gdb cmake build-essential g++ acpica-tools protobuf-compiler libprotobuf-dev libglib2.0-dev libyaml-cpp-dev libpixman-1-dev libzstd-dev zlib1g-dev libsdl2-dev libasound2-dev
+
+    - name: Meson build setup
+      run: meson setup build -Dsdl=true
+
+    - name: Meson compilation
+      run: meson compile -C build
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: mvisor-latest-build
+        path: build/
